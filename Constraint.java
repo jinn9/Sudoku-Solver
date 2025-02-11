@@ -1,23 +1,22 @@
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 public class Constraint {
 
     private String name;
-    private ArrayList<Variable> scope;
+    private List<Variable> scope;
 
-    Constraint(String name, ArrayList<Variable> scope) {
+    public Constraint(String name, List<Variable> scope) {
         this.name = name;
         this.scope = scope;
     }
 
-    public ArrayList<Variable> getScope() {
+    public List<Variable> getScope() {
         return scope;
     }
 
-    // returns the number of unassigned variables in this constraint's scope
+    /*
+     * return the number of unassigned variables in this constraint's scope
+     */
     public int getNumUnassigned() {
         int count = 0;
         for (Variable v : scope) {

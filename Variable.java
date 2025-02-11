@@ -14,17 +14,29 @@ public class Variable implements Comparable {
     private int[] domain;
     private ArrayList<Integer> curDomain;
     private String name;
+    private int row;
+    private int col;
 
-    Variable(int value, int[] domain, String name) {
+    public Variable(int value, int row, int col) {
         this.value = value;
-        this.name = name;
-        this.domain = domain;
+        this.name = "variable_" + (row + 1) + (col + 1);
+        this.domain = new int[] {1,2,3,4,5,6,7,8,9};
+        this.row = row;
+        this.col = col;
 
         // create a copy of domain
         curDomain = new ArrayList<>();
         for (int val : domain) {
             curDomain.add(val);
         }
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 
     public int getValue() {

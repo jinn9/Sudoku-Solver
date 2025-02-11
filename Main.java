@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     private static final int DIM = 9;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         // initialize initial Sudoku board
-        int initialBoard[][] = new int[DIM][DIM];
+        int[][] initialBoard = new int[DIM][DIM];
 
         // read inputs from the user
         Scanner input = new Scanner(System.in);
