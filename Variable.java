@@ -1,18 +1,14 @@
-import java.util.Map;
-import java.util.HashMap;
-import java.util.AbstractMap;
-import java.util.Iterator;
-import java.util.ArrayList;
+import java.util.*;
 
 // Class Variable
 // Each Variable represents a cell in the board
-public class Variable implements Comparable {
+public class Variable implements Comparable<Object> {
     //stores pruned values indexed by a (variable, value) pair
-    public static Map<Map.Entry<Variable, Integer>, ArrayList<Map.Entry<Variable, Integer>>> undoDict = new HashMap<>();
+    public static Map<Map.Entry<Variable, Integer>, List<Map.Entry<Variable, Integer>>> undoDict = new HashMap<>();
 
     private int value;
     private int[] domain;
-    private ArrayList<Integer> curDomain;
+    private List<Integer> curDomain;
     private String name;
     private int row;
     private int col;
@@ -55,17 +51,17 @@ public class Variable implements Comparable {
         this.domain = domain;
     }
 
-    public ArrayList<Integer> getCurDomain() {
+    public List<Integer> getCurDomain() {
         // returns an assigned value if the variable is assigned
         if (isAssigned()) {
-            ArrayList<Integer> curDomain = new ArrayList<>();
+            List<Integer> curDomain = new ArrayList<>();
             curDomain.add(value);
             return curDomain;
         }
         return this.curDomain;
     }
 
-    public void setCurDomain(ArrayList<Integer> curDomain) {
+    public void setCurDomain(List<Integer> curDomain) {
         this.curDomain = curDomain;
     }
 

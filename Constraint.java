@@ -34,7 +34,7 @@ public class Constraint {
     // implements all-diff
     public boolean check() {
         if (getNumUnassigned() == 0) {
-            ArrayList<Integer> assignments = new ArrayList<>();
+            List<Integer> assignments = new ArrayList<>();
             for (Variable v : scope) {
                 if (assignments.contains(v.getValue()))
                     return false;
@@ -51,13 +51,13 @@ public class Constraint {
             return true;
 
         // create of a copy of scope
-        ArrayList<Variable> varsToAssign = new ArrayList<>();
+        List<Variable> varsToAssign = new ArrayList<>();
         for (Variable  v : scope)
             varsToAssign.add(v);
 
         varsToAssign.remove(var);
 
-        ArrayList<Map.Entry<Variable, Integer>> assignment = new ArrayList<>();
+        List<Map.Entry<Variable, Integer>> assignment = new ArrayList<>();
         assignment.add(new AbstractMap.SimpleEntry<>(var, val));
         //System.out.print("When " + assignment.get(0).getKey().getName() + " is set to " + assignment.get(0).getValue() + ", supporting tuple ");
 
@@ -65,8 +65,8 @@ public class Constraint {
         return findvals(varsToAssign, assignment);
     }
 
-    private boolean valsNotEqual(ArrayList<Map.Entry<Variable, Integer>> assignments) {
-        ArrayList<Integer> valsSeen = new ArrayList<>();
+    private boolean valsNotEqual(List<Map.Entry<Variable, Integer>> assignments) {
+        List<Integer> valsSeen = new ArrayList<>();
         for (Map.Entry<Variable, Integer> assignment : assignments) {
             if (valsSeen.contains(assignment.getValue()))
                 return false;
@@ -75,12 +75,12 @@ public class Constraint {
         return true;
     }
 
-    private boolean findvals(ArrayList<Variable> remainingVars, ArrayList<Map.Entry<Variable, Integer>> assignments) {
+    private boolean findvals(List<Variable> remainingVars, List<Map.Entry<Variable, Integer>> assignments) {
         Collections.sort(remainingVars);
         return findvals_(remainingVars, assignments);
     }
 
-    private boolean findvals_(ArrayList<Variable> remainingVars, ArrayList<Map.Entry<Variable, Integer>> assignments) {
+    private boolean findvals_(List<Variable> remainingVars, List<Map.Entry<Variable, Integer>> assignments) {
         if (remainingVars.isEmpty())
             return valsNotEqual(assignments);
         Variable var = remainingVars.remove(remainingVars.size() - 1);
